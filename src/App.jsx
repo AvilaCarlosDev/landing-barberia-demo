@@ -151,6 +151,30 @@ function App() {
                 onClick={() => setActiveTab('peluqueria')}
                 className={`px-8 py-4 rounded-full font-bold transition ${
                   activeTab === 'peluqueria' ? 'bg-pink-500 text-white' : 'text-gray-400 hover:text-white'
+
+      {/* Social Proof - Stats */}
+      <section className="bg-gray-900 py-12 px-6 lg:px-12">
+        <div className="max-w-[1800px] mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-black text-yellow-400 mb-2">+3K</div>
+              <div className="text-sm lg:text-base font-bold text-gray-400">Cortes realizados</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-black text-yellow-400 mb-2">4.9★</div>
+              <div className="text-sm lg:text-base font-bold text-gray-400">Clientes felices</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-black text-yellow-400 mb-2">+10</div>
+              <div className="text-sm lg:text-base font-bold text-gray-400">Años experiencia</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl lg:text-5xl font-black text-yellow-400 mb-2">100%</div>
+              <div className="text-sm lg:text-base font-bold text-gray-400">Garantizado</div>
+            </div>
+          </div>
+        </div>
+      </section>
                 }`}
               >
                 ✂️ PELUQUERÍA
