@@ -28,7 +28,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white">
+    <div className="min-h-[80vh] lg:min-h-[90vh] bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-gray-800">
         <div className="max-w-[1800px] mx-auto px-6 lg:px-12 py-6">
@@ -57,7 +57,7 @@ function App() {
       </nav>
 
       {/* Hero */}
-      <section className="relative min-h-screen flex items-center">
+      <section className="relative min-h-[80vh] lg:min-h-[90vh] flex items-center">
         <div className="absolute inset-0 grid grid-cols-2">
           <div className="bg-gradient-to-br from-amber-900/20 to-transparent"></div>
           <div className="bg-gradient-to-bl from-pink-900/20 to-transparent"></div>
@@ -71,7 +71,7 @@ function App() {
                 <span className="text-sm font-bold tracking-wide">ABIERTO AHORA • HASTA LAS 8PM</span>
               </div>
 
-              <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black leading-none mb-8">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none mb-8">
                 <span className="block">PARA</span>
                 <span className="block text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-pink-500 to-rose-500">ÉL & ELLA</span>
               </h1>
