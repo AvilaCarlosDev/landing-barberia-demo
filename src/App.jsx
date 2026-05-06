@@ -5,25 +5,25 @@ function App() {
 
   // Imágenes reales de Unsplash - Barbería y Peluquería
   const images = {
-    hero1: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600&q=80', // Barbero
-    hero2: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80', // Corte dama
-    hero3: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&q=80', // Barbería interior
-    hero4: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600&q=80', // Barba
+    hero1: 'https://source.unsplash.com/random/600x400/?barber,haircut', // Barbero
+    hero2: 'https://source.unsplash.com/random/600x400/?barber,haircut', // Corte dama
+    hero3: 'https://source.unsplash.com/random/600x400/?barber,haircut', // Barbería interior
+    hero4: 'https://source.unsplash.com/random/600x400/?barber,haircut', // Barba
     barberia: {
-      servicio1: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=400&q=80',
-      servicio2: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&q=80',
-      servicio3: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&q=80',
-      servicio4: 'https://images.unsplash.com/photo-1503951914875-befbb649186f?w=400&q=80',
-      equipo1: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=400&q=80',
-      equipo2: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=400&q=80',
+      servicio1: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      servicio2: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      servicio3: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      servicio4: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      equipo1: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      equipo2: 'https://source.unsplash.com/random/600x400/?barber,haircut',
     },
     peluqueria: {
-      servicio1: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=400&q=80',
-      servicio2: 'https://images.unsplash.com/photo-1560869713-7d0a29430803?w=400&q=80',
-      servicio3: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80',
-      servicio4: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=400&q=80',
-      equipo1: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=400&q=80',
-      equipo2: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+      servicio1: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      servicio2: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      servicio3: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      servicio4: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      equipo1: 'https://source.unsplash.com/random/600x400/?barber,haircut',
+      equipo2: 'https://source.unsplash.com/random/600x400/?barber,haircut',
     },
   }
 
