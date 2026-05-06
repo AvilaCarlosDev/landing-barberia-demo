@@ -1,0 +1,6 @@
+{
+  "name": "agencia-web-barberia-demo",
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite"
+}
