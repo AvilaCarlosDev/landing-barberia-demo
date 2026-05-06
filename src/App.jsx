@@ -18,16 +18,16 @@ function App() {
   ]
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black text-white font-sans">
+    <div className="min-h-screen bg-black text-white font-sans">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-gray-800">
+      <header className="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-md border-b border-amber-600/30">
         <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
           <div className="flex justify-between items-center py-5">
             <div className="flex items-center gap-4">
               <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl flex items-center justify-center text-3xl">✂️</div>
               <div>
                 <span className="text-2xl font-black tracking-wide">NOBLE <span className="text-amber-500">BARBER</span></span>
-                <p className="text-xs text-gray-400 tracking-widest uppercase">Studio</p>
+                <p className="text-xs text-amber-500/70 tracking-widest uppercase">Studio</p>
               </div>
             </div>
 
@@ -35,44 +35,43 @@ function App() {
               <a href="#inicio" className="text-sm font-medium hover:text-amber-500 transition">Inicio</a>
               <a href="#servicios" className="text-sm font-medium hover:text-amber-500 transition">Servicios</a>
               <a href="#barberos" className="text-sm font-medium hover:text-amber-500 transition">Barberos</a>
-              <a href="#tienda" className="text-sm font-medium hover:text-amber-500 transition">Tienda</a>
               <a href="#ubicacion" className="text-sm font-medium hover:text-amber-500 transition">Ubicación</a>
             </nav>
 
             <a href="https://wa.me/584120000000" className="bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-black px-7 py-3 rounded-full font-bold transition">
-              Reservar cita
+              Reservar
             </a>
           </div>
         </div>
       </header>
 
       <main>
-        {/* Hero */}
+        {/* Hero - Estilo Fígaro */}
         <section id="inicio" className="relative min-h-screen flex items-center pt-20">
           <div className="absolute inset-0">
             <img src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1600&q=80" alt="" className="w-full h-full object-cover" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/95 via-black/80 to-black/60"></div>
           </div>
 
           <div className="relative z-10 max-w-[1920px] mx-auto px-6 lg:px-12 py-24 w-full">
-            <div className="max-w-2xl">
+            <div className="max-w-3xl">
               <div className="inline-flex items-center gap-3 bg-amber-500/20 backdrop-blur-md border border-amber-500/30 px-6 py-3 rounded-full mb-8">
                 <span className="text-amber-500 text-xl">✂️</span>
-                <span className="text-amber-500 font-bold text-sm tracking-wider">EXPERIENCIA PREMIUM</span>
+                <span className="text-amber-500 font-bold text-sm tracking-wider">BARBERÍA PREMIUM</span>
               </div>
               
               <h1 className="text-5xl lg:text-7xl font-black text-white mb-8 leading-tight">
                 Tu estilo merece<br/>
-                <span className="text-amber-500">una experiencia premium</span>
+                <span className="text-amber-500">una experiencia única</span>
               </h1>
               <p className="text-xl text-gray-300 mb-12">
-                Cortes, barba y cuidado masculino en un espacio exclusivo. Bebida de cortesía incluida en todos los servicios.
+                Cortes, barba y cuidado masculino en un espacio exclusivo. Bebida de cortesía incluida.
               </p>
               <div className="flex flex-wrap gap-5">
-                <a href="#servicios" className="bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-black px-10 py-5 rounded-full font-bold text-lg transition shadow-xl">
+                <a href="https://wa.me/584120000000" className="bg-gradient-to-r from-amber-500 to-amber-700 hover:from-amber-600 hover:to-amber-800 text-black px-10 py-5 rounded-full font-bold text-lg transition shadow-xl">
                   Reservar cita
                 </a>
-                <a href="#servicios" className="bg-white/20 backdrop-blur-md hover:bg-white/30 text-white px-10 py-5 rounded-full font-bold text-lg transition border-2 border-white/50">
+                <a href="#servicios" className="bg-white/10 backdrop-blur-md hover:bg-white/20 text-white px-10 py-5 rounded-full font-bold text-lg transition border-2 border-white/30">
                   Ver servicios
                 </a>
               </div>
@@ -80,45 +79,12 @@ function App() {
           </div>
         </section>
 
-        {/* Experiencia */}
-        <section className="py-24 bg-gray-950">
-          <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
-            <div className="grid lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-4xl lg:text-5xl font-black mb-8">Un espacio exclusivo<br/><span className="text-amber-500">para cuidar tu imagen</span></h2>
-                <p className="text-lg text-gray-400 mb-10 leading-relaxed">
-                  Noble Barber Studio es más que una barbería. Es un lugar elegante, cómodo y moderno donde cada detalle está pensado para tu comodidad.
-                </p>
-                <ul className="space-y-5">
-                  {[
-                    'Ambiente premium con música ambiental',
-                    'Bebida de cortesía (café, cerveza o whisky)',
-                    'Productos de primera calidad',
-                    'Barberos expertos con +10 años de experiencia',
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-4">
-                      <span className="text-amber-500 text-2xl">✓</span>
-                      <span className="text-lg">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="grid grid-cols-2 gap-6">
-                <div className="aspect-[3/4] bg-gradient-to-br from-amber-500/20 to-amber-700/20 rounded-3xl flex items-center justify-center text-7xl border border-amber-500/30">✂️</div>
-                <div className="aspect-[3/4] bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl flex items-center justify-center text-7xl border border-gray-700">🪒</div>
-                <div className="aspect-[3/4] bg-gradient-to-br from-gray-800 to-gray-900 rounded-3xl flex items-center justify-center text-7xl border border-gray-700">💈</div>
-                <div className="aspect-[3/4] bg-gradient-to-br from-amber-500/20 to-amber-700/20 rounded-3xl flex items-center justify-center text-7xl border border-amber-500/30">🥃</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Servicios */}
+        {/* Servicios - Grid con fotos */}
         <section id="servicios" className="py-24 bg-black">
           <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
             <div className="text-center mb-20">
-              <span className="text-amber-500 text-sm font-bold tracking-[0.3em] uppercase block mb-6">Nuestros Servicios</span>
-              <h2 className="text-5xl lg:text-6xl font-black mb-6">Menú de Servicios</h2>
+              <span className="text-amber-500 text-sm font-bold tracking-[0.3em] uppercase block mb-6">Menú de Servicios</span>
+              <h2 className="text-5xl lg:text-6xl font-black mb-6">Nuestros Servicios</h2>
               <p className="text-lg text-gray-400">Todos incluyen bebida de cortesía</p>
             </div>
 
@@ -155,7 +121,7 @@ function App() {
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
               {barberos.map((barbero, i) => (
                 <div key={i} className="group text-center">
-                  <div className="aspect-square rounded-3xl overflow-hidden mb-8 bg-gray-900">
+                  <div className="aspect-square rounded-3xl overflow-hidden mb-8 bg-gray-900 border border-gray-800">
                     <img src={barbero.img} alt={barbero.name} className="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
                   </div>
                   <h3 className="text-2xl font-black mb-3">{barbero.name}</h3>
@@ -167,7 +133,7 @@ function App() {
         </section>
 
         {/* Ubicación */}
-        <section id="ubicacion" className="py-24 bg-gray-950">
+        <section id="ubicacion" className="py-24 bg-black">
           <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
             <div className="grid lg:grid-cols-2 gap-16">
               <div>
@@ -219,7 +185,7 @@ function App() {
       </main>
 
       {/* Footer */}
-      <footer className="bg-black py-16 border-t border-gray-800">
+      <footer className="bg-black py-16 border-t border-amber-600/30">
         <div className="max-w-[1920px] mx-auto px-6 lg:px-12">
           <div className="grid md:grid-cols-4 gap-12 mb-12">
             <div className="md:col-span-2">
@@ -227,7 +193,7 @@ function App() {
                 <div className="w-14 h-14 bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl flex items-center justify-center text-3xl">✂️</div>
                 <div>
                   <span className="text-2xl font-black tracking-wide">NOBLE <span className="text-amber-500">BARBER</span></span>
-                  <p className="text-xs text-gray-400 tracking-widest uppercase">Studio</p>
+                  <p className="text-xs text-amber-500/70 tracking-widest uppercase">Studio</p>
                 </div>
               </div>
               <p className="text-gray-400 mb-8 max-w-md text-lg">
@@ -249,7 +215,6 @@ function App() {
               <h3 className="font-black text-xl mb-8">Enlaces</h3>
               <ul className="space-y-4 text-gray-400">
                 <li><a href="#" className="hover:text-amber-500 transition">Barberos</a></li>
-                <li><a href="#" className="hover:text-amber-500 transition">Tienda</a></li>
                 <li><a href="#" className="hover:text-amber-500 transition">Galería</a></li>
                 <li><a href="#" className="hover:text-amber-500 transition">Contacto</a></li>
               </ul>
