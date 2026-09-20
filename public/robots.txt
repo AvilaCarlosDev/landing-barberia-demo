@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://agencia-web-barberia-demo.vercel.app/sitemap.xml
