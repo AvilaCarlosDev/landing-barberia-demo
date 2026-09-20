@@ -10,7 +10,7 @@ const services = [
     category: 'Corte',
     price: '$12',
     time: '35 min',
-    image: 'https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=900&q=85&fit=crop',
+    image: '/img/foto-15993514312021.jpg',
     desc: 'Diagnóstico de estilo, corte de precisión, lavado y styling final.',
     tag: 'Popular',
   },
@@ -19,7 +19,7 @@ const services = [
     category: 'Barba',
     price: '$20',
     time: '55 min',
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=900&q=85&fit=crop',
+    image: '/img/foto-15623221408bae.jpg',
     desc: 'Fade personalizado, barba con toalla caliente, navaja y aceite premium.',
     tag: 'Premium',
   },
@@ -28,7 +28,7 @@ const services = [
     category: 'Barba',
     price: '$9',
     time: '25 min',
-    image: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=900&q=85&fit=crop',
+    image: '/img/foto-1621605815971f.jpg',
     desc: 'Perfilado, simetría, líneas limpias y acabado hidratante.',
   },
   {
@@ -36,7 +36,7 @@ const services = [
     category: 'Tratamiento',
     price: '$14',
     time: '30 min',
-    image: 'https://images.unsplash.com/photo-1503951914875-befbb6470521?w=900&q=85&fit=crop',
+    image: '/img/facial-treatment.jpg',
     desc: 'Limpieza facial masculina, vapor, exfoliación y mascarilla calmante.',
   },
   {
@@ -44,7 +44,7 @@ const services = [
     category: 'Tratamiento',
     price: '$10',
     time: '20 min',
-    image: 'https://images.unsplash.com/photo-1593702295094-aea8c5c13589?w=900&q=85&fit=crop',
+    image: '/img/hair-treatment.jpg',
     desc: 'Hidratación capilar, control de frizz y brillo natural.',
   },
   {
@@ -52,7 +52,7 @@ const services = [
     category: 'Color',
     price: 'Desde $25',
     time: '60 min',
-    image: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=900&q=85&fit=crop',
+    image: '/img/foto-16054977880445.jpg',
     desc: 'Diseños de color, platinados, tonos fantasía y asesoría de mantenimiento.',
   },
 ]
@@ -62,21 +62,21 @@ const barbers = [
     name: 'Marco Santoro',
     role: 'Master Barber',
     specialty: 'Clásicos, tijera y ejecutivos',
-    image: 'https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=700&q=85&fit=crop',
+    image: '/img/foto-15857478607152.jpg',
     rating: '4.98',
   },
   {
     name: 'Andrés Leal',
     role: 'Fade Specialist',
     specialty: 'Low fade, taper y texturizados',
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=700&q=85&fit=crop',
+    image: '/img/foto-15623221408bae.jpg',
     rating: '4.96',
   },
   {
     name: 'Gabriel Rojas',
     role: 'Beard Artist',
     specialty: 'Barba, navaja y ritual caliente',
-    image: 'https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=700&q=85&fit=crop',
+    image: '/img/foto-1621605815971f.jpg',
     rating: '4.97',
   },
 ]
@@ -146,7 +146,7 @@ function App() {
       <main>
         <section id="inicio" className="relative isolate overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=1900&q=85&fit=crop"
+            src="/img/foto-15857478607152.jpg"
             alt="Interior de barbería premium"
             className="absolute inset-0 -z-20 h-full w-full object-cover opacity-32"
           />
@@ -186,7 +186,7 @@ function App() {
 
             <div className="relative hidden min-h-[580px] lg:block">
               <div className="absolute right-0 top-5 w-[23rem] border border-white/10 bg-[#1b1713] p-4 shadow-2xl shadow-black/40">
-                <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=900&q=90&fit=crop" alt="Barbero cortando cabello" className="h-80 w-full object-cover" />
+                <img src="/img/foto-15993514312021.jpg" alt="Barbero cortando cabello" className="h-80 w-full object-cover" />
                 <div className="p-5">
                   <p className="text-xs font-black uppercase tracking-[0.2em] text-[#d39b55]">Servicio recomendado</p>
                   <h2 className="mt-2 font-serif text-3xl font-black uppercase">Corte + Barba Ritual</h2>
@@ -339,7 +339,7 @@ function App() {
               </a>
             </div>
             <div className="relative min-h-[430px]">
-              <img src="https://images.unsplash.com/photo-1503951914875-befbb6470521?w=1100&q=85&fit=crop" alt="Barbería elegante" className="absolute inset-0 h-full w-full object-cover opacity-75" />
+              <img src="/img/shop-interior.jpg" alt="Barbería elegante" className="absolute inset-0 h-full w-full object-cover opacity-75" />
               <div className="absolute inset-0 bg-gradient-to-t from-[#11100e]/90 to-transparent" />
             </div>
           </div>
