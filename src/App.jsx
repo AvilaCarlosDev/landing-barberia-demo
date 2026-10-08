@@ -1,5 +1,7 @@
-import { useMemo, useState } from 'react'
-import { DivisorPole, MenuMovil, Rotulo, SaltarAlContenido, TiraPole, WhatsAppFlotante } from './sitio.jsx'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Contador, DivisorPole, MenuMovil, Rotulo, SaltarAlContenido, TiraPole, WhatsAppFlotante } from './sitio.jsx'
+import { SeccionCorte } from './corte.jsx'
+import { activarMotion, useParallax, useRevelar, useRevelarHijos } from './motion.js'
 import { useSeccionActiva, wa } from './navegacion.js'
 
 const enlaces = [
@@ -63,21 +65,24 @@ const barbers = [
     name: 'Marco Santoro',
     role: 'Master Barber',
     specialty: 'Clásicos, tijera y ejecutivos',
-    image: '/img/foto-15857478607152.jpg',
+    image: '/img/barbero-corte-tijera-1.jpg',
+    alt: 'Marco Santoro cortando el cabello de un cliente con tijera y peine',
     rating: '4.98',
   },
   {
     name: 'Andrés Leal',
     role: 'Fade Specialist',
     specialty: 'Low fade, taper y texturizados',
-    image: '/img/foto-15623221408bae.jpg',
+    image: '/img/barbero-fade-clipper-1.jpg',
+    alt: 'Andrés Leal marcando un fade con la máquina a un cliente',
     rating: '4.96',
   },
   {
     name: 'Gabriel Rojas',
     role: 'Beard Artist',
     specialty: 'Barba, navaja y ritual caliente',
-    image: '/img/foto-1621605815971f.jpg',
+    image: '/img/foto-15993514312021.jpg',
+    alt: 'Gabriel Rojas perfilando la barba de un cliente con la navaja',
     rating: '4.97',
   },
 ]
@@ -115,6 +120,18 @@ const guia = 'hidden h-0 flex-1 border-b border-dotted sm:block'
 function App() {
   const [activeFilter, setActiveFilter] = useState('Todos')
   const activa = useSeccionActiva(enlaces.map(([id]) => id))
+  const fotoHero = useRef(null)
+
+  useParallax(fotoHero)
+  const revelarTalon = useRevelar()
+  const revelarBarberos = useRevelarHijos()
+  const revelarMembresias = useRevelarHijos()
+  const revelarCitas = useRevelar()
+  const revelarUbicacion = useRevelar()
+
+  useEffect(() => {
+    activarMotion()
+  }, [])
 
   const filteredServices = useMemo(() => {
     if (activeFilter === 'Todos') return services
@@ -172,11 +189,12 @@ function App() {
       <main id="contenido">
         <section id="inicio" className="relative isolate overflow-hidden bg-[#0f0e0c]">
           <img
-            src="/img/foto-15857478607152.jpg"
-            alt="Barbero trabajando en el sillón de Noble Barber"
-            className="absolute inset-0 -z-20 h-full w-full object-cover opacity-30"
+            ref={fotoHero}
+            src="/img/barbero-sillon-cliente-1.jpg"
+            alt="Barbero cortando el pelo de un cliente en el sillón de Noble Barber"
+            className="foto-parallax absolute inset-0 -z-20 h-full w-full object-cover opacity-65"
           />
-          <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(15,14,12,.94)_0%,rgba(15,14,12,.82)_45%,#0f0e0c_100%)]" />
+          <div className="absolute inset-0 -z-10 bg-[linear-gradient(180deg,rgba(15,14,12,.9)_0%,rgba(15,14,12,.68)_45%,#0f0e0c_100%)]" />
           <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_40%,rgba(211,155,85,.22),transparent_62%)]" />
 
           <div className="mx-auto flex min-h-[calc(100vh-5.5rem)] max-w-4xl flex-col items-center justify-center px-4 py-14 text-center sm:px-5 lg:px-8">
@@ -216,23 +234,25 @@ function App() {
                 </p>
 
                 <div className="mt-9 flex flex-col items-stretch gap-3 sm:flex-row sm:justify-center">
-                  <a href={wa('Hola, quiero reservar una cita en Noble Barber.')} className="inline-flex items-center justify-center bg-[#d39b55] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:bg-[#f4eadc]">
+                  <a href={wa('Hola, quiero reservar una cita en Noble Barber.')} className="inline-flex items-center justify-center bg-[#d39b55] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:-translate-y-0.5 hover:bg-[#f4eadc] hover:shadow-[0_18px_34px_-18px_rgba(211,155,85,.75)]">
                     Reservar cita
                   </a>
-                  <a href="#servicios" className="inline-flex items-center justify-center border border-[#f4eadc]/35 px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#f4eadc] transition hover:border-[#d39b55] hover:text-[#d39b55]">
+                  <a href="#servicios" className="inline-flex items-center justify-center border border-[#f4eadc]/35 px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#f4eadc] transition hover:-translate-y-0.5 hover:border-[#d39b55] hover:text-[#d39b55]">
                     Ver el talón
                   </a>
                 </div>
 
                 <div className="mt-10 grid grid-cols-3 divide-x divide-[#d39b55]/25 border-y border-dashed border-[#d39b55]/40">
                   {[
-                    ['8+', 'años de oficio'],
-                    ['4.9', 'de 5 estrellas'],
-                    ['6k+', 'clientes'],
-                  ].map(([value, label]) => (
-                    <div key={label} className="px-2 py-4">
-                      <strong className="block font-serif text-2xl font-black text-[#d39b55] sm:text-3xl">{value}</strong>
-                      <span className="mt-1 block text-[9px] font-black uppercase tracking-[0.16em] text-[#f4eadc]/65 sm:text-[10px]">{label}</span>
+                    { valor: 8, sufijo: '+', etiqueta: 'años de oficio' },
+                    { valor: 4.9, decimales: 1, etiqueta: 'de 5 estrellas' },
+                    { valor: 6, sufijo: 'k+', etiqueta: 'clientes' },
+                  ].map(({ valor, decimales, sufijo, etiqueta }) => (
+                    <div key={etiqueta} className="px-2 py-4">
+                      <strong className="tabular block font-serif text-2xl font-black text-[#d39b55] sm:text-3xl">
+                        <Contador valor={valor} decimales={decimales} sufijo={sufijo} />
+                      </strong>
+                      <span className="mt-1 block text-[9px] font-black uppercase tracking-[0.16em] text-[#f4eadc]/65 sm:text-[10px]">{etiqueta}</span>
                     </div>
                   ))}
                 </div>
@@ -273,7 +293,7 @@ function App() {
               ))}
             </div>
 
-            <div className="relative mt-12 shadow-[0_40px_80px_-30px_rgba(0,0,0,.9)]">
+            <div ref={revelarTalon} className="relative mt-12 shadow-[0_40px_80px_-30px_rgba(0,0,0,.9)]">
               <div aria-hidden="true" className="papel perforacion" />
               <div className="papel px-5 pb-9 pt-8 sm:px-10 sm:pb-11 sm:pt-10">
                 <div className="text-center">
@@ -287,7 +307,10 @@ function App() {
 
                 <ul className="mt-7">
                   {filteredServices.map((service) => (
-                    <li key={service.name} className="border-b border-dashed border-[#c9b69c] py-5 last:border-b-0 sm:py-6">
+                    <li
+                      key={service.name}
+                      className="-mx-2 border-b border-dashed border-[#c9b69c] px-2 py-5 transition-colors last:border-b-0 hover:bg-[#15110d]/[0.05] sm:py-6"
+                    >
                       <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
                         <h3 className="font-serif text-xl font-black uppercase leading-tight sm:text-2xl">{service.name}</h3>
                         {service.tag && (
@@ -309,7 +332,7 @@ function App() {
                           <a
                             href={wa(`Hola, quiero reservar ${service.name} (${service.time}, ${service.price}).`)}
                             aria-label={`Reservar ${service.name}`}
-                            className="shrink-0 border border-[#15110d] px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:bg-[#15110d] hover:text-[#f7f1e6]"
+                            className="shrink-0 border border-[#15110d] px-3.5 py-2 text-[11px] font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:-translate-y-0.5 hover:bg-[#15110d] hover:text-[#f7f1e6]"
                           >
                             Reservar
                           </a>
@@ -326,7 +349,7 @@ function App() {
                   </p>
                   <a
                     href={wa('Hola, quiero reservar una cita en Noble Barber.')}
-                    className="mt-6 inline-flex items-center justify-center bg-[#15110d] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#f7f1e6] transition hover:bg-[#d39b55] hover:text-[#15110d]"
+                    className="mt-6 inline-flex items-center justify-center bg-[#15110d] px-8 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#f7f1e6] transition hover:-translate-y-0.5 hover:bg-[#d39b55] hover:text-[#15110d] hover:shadow-[0_16px_30px_-16px_rgba(21,17,13,.9)]"
                   >
                     Reservar cita
                   </a>
@@ -339,6 +362,10 @@ function App() {
 
         <DivisorPole />
 
+        <SeccionCorte />
+
+        <DivisorPole />
+
         <section id="barberos" className="bg-[#f4eadc] py-20 text-[#15110d] sm:py-24">
           <div className="mx-auto max-w-7xl px-5 lg:px-8">
             <Rotulo
@@ -348,14 +375,19 @@ function App() {
               tono="claro"
             />
 
-            <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+            <div ref={revelarBarberos} className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {barbers.map((barber, i) => (
-                <article key={barber.name} className={`group ${i === 1 ? 'lg:mt-14' : ''}`}>
-                  <div className="relative border-[6px] border-[#15110d] bg-[#15110d] shadow-[0_28px_54px_-28px_rgba(21,17,13,.7)]">
+                <article
+                  key={barber.name}
+                  data-revelar
+                  className={`group transition hover:-translate-y-2 ${i === 1 ? 'lg:mt-14' : ''}`}
+                >
+                  <div className="relative border-[6px] border-[#15110d] bg-[#15110d] shadow-[0_28px_54px_-28px_rgba(21,17,13,.7)] transition duration-500 group-hover:shadow-[0_40px_70px_-30px_rgba(21,17,13,.85)]">
                     <div className="relative aspect-[4/5] overflow-hidden">
                       <img
                         src={barber.image}
-                        alt={`${barber.name}, ${barber.role} de Noble Barber`}
+                        alt={barber.alt}
+                        loading="lazy"
                         className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#15110d]/70 via-transparent to-transparent" />
@@ -392,14 +424,15 @@ function App() {
               texto="Planes mensuales con cita priorizada, cortes programados y detalles de la casa."
             />
 
-            <div className="mt-14 grid gap-6 md:grid-cols-3">
+            <div ref={revelarMembresias} className="mt-14 grid gap-6 md:grid-cols-3">
               {memberships.map(([name, price, perk1, perk2, recomendado]) => (
                 <article
                   key={name}
-                  className={`relative flex flex-col border p-7 sm:p-8 ${
+                  data-revelar
+                  className={`relative flex flex-col border p-7 transition hover:-translate-y-2 sm:p-8 ${
                     recomendado
-                      ? 'border-[#d39b55] bg-[#d39b55] text-[#15110d] shadow-[0_34px_64px_-32px_rgba(211,155,85,.55)] md:-my-3 md:py-11'
-                      : 'border-[#d39b55]/35 bg-[#17140f]'
+                      ? 'border-[#d39b55] bg-[#d39b55] text-[#15110d] shadow-[0_34px_64px_-32px_rgba(211,155,85,.55)] hover:shadow-[0_44px_74px_-32px_rgba(211,155,85,.7)] md:-my-3 md:py-11'
+                      : 'border-[#d39b55]/35 bg-[#17140f] hover:border-[#d39b55] hover:shadow-[0_34px_60px_-32px_rgba(0,0,0,.9)]'
                   }`}
                 >
                   <span
@@ -450,10 +483,11 @@ function App() {
           <div className="mx-auto max-w-3xl px-5 lg:px-8">
             <Rotulo antetitulo="Citas de la casa" titulo="Lo que se dice en la silla" tono="claro" />
             <p className="mt-5 text-center text-[11px] font-black uppercase tracking-[0.24em] text-[#7a4f1f]">
-              <span className="tabular">4.9</span> de 5 · más de 600 reseñas
+              <span className="tabular"><Contador valor={4.9} decimales={1} /></span> de 5 · más de{' '}
+              <span className="tabular"><Contador valor={600} /></span> reseñas
             </p>
 
-            <div className="mt-14 space-y-11">
+            <div ref={revelarCitas} className="mt-14 space-y-11">
               {reviews.map((review) => (
                 <figure key={review.name} className="border-t border-[#c9b69c] pt-10 first:border-t-0 first:pt-0">
                   <blockquote className="relative font-serif text-2xl leading-snug sm:text-3xl">
@@ -482,7 +516,7 @@ function App() {
               texto="Atención con cita para reducir esperas. Reserva por WhatsApp y te confirmamos la hora en minutos."
             />
 
-            <div className="mt-14 grid overflow-hidden border border-[#d39b55]/35 bg-[#17140f] lg:grid-cols-2">
+            <div ref={revelarUbicacion} className="mt-14 grid overflow-hidden border border-[#d39b55]/35 bg-[#17140f] lg:grid-cols-2">
               <div className="p-8 sm:p-12 lg:p-14">
                 <p className="text-lg leading-8 text-[#f4eadc]/80 sm:text-xl">
                   Av. Táchira con calle Comercio, Local 8. Punto Fijo, Falcón.
@@ -500,7 +534,7 @@ function App() {
 
                 <a
                   href={wa('Hola, quiero reservar una cita en Noble Barber.')}
-                  className="mt-10 inline-flex bg-[#d39b55] px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:bg-[#f4eadc]"
+                  className="mt-10 inline-flex bg-[#d39b55] px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:-translate-y-0.5 hover:bg-[#f4eadc] hover:shadow-[0_16px_30px_-16px_rgba(211,155,85,.6)]"
                 >
                   Reservar por WhatsApp
                 </a>

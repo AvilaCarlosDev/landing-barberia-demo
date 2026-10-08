@@ -123,3 +123,142 @@ p {
     animation-play-state: paused !important;
   }
 }
+
+.foto-parallax {
+  transform: scale(1.16);
+  will-change: transform;
+}
+
+.por-revelar:not(.revelada) {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+.revelada {
+  opacity: 1;
+  transform: none;
+  transition: opacity 0.8s cubic-bezier(0.22, 0.61, 0.36, 1), transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--revelar-espera, 0ms);
+}
+
+[data-mascara].por-revelar:not(.revelada) {
+  opacity: 0;
+  transform: none;
+  clip-path: inset(0 0 100% 0);
+}
+
+[data-mascara].revelada {
+  opacity: 1;
+  transform: none;
+  clip-path: inset(0 0 0 0);
+  transition: opacity 0.7s ease, clip-path 0.95s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition-delay: var(--revelar-espera, 0ms);
+}
+
+.corte-contenido {
+  padding-top: 3.5rem;
+  padding-bottom: 4.5rem;
+}
+
+.corte-fotos {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+
+.corte-foto {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.corte-velo {
+  display: none;
+}
+
+.corte-barra-lleno {
+  transform: scaleX(0);
+}
+
+@media (min-width: 640px) {
+  .corte-fotos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.motion-activo .corte {
+  height: 300vh;
+}
+
+.motion-activo .corte-escenario {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.motion-activo .corte-fotos {
+  position: absolute;
+  inset: 0;
+  display: block;
+  gap: 0;
+}
+
+.motion-activo .corte-foto {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  aspect-ratio: auto;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.motion-activo .corte-foto[data-activa="si"] {
+  opacity: 1;
+}
+
+.motion-activo .corte-velo {
+  display: block;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 14, 12, 0.9) 0%, rgba(15, 14, 12, 0.66) 52%, rgba(15, 14, 12, 0.9) 100%);
+}
+
+.motion-activo .corte-contenido {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 5.5rem;
+  padding-bottom: 3rem;
+}
+
+.motion-activo .corte-paso {
+  opacity: 0.5;
+  transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.6s ease, background-color 0.6s ease;
+}
+
+.motion-activo .corte-paso[data-activa="si"] {
+  opacity: 1;
+  transform: translateY(-6px);
+  border-color: #d39b55;
+  background-color: rgba(17, 16, 14, 0.88);
+}
+
+.motion-activo .corte-barra-lleno {
+  transform: scaleX(var(--progreso, 0));
+  transition: transform 0.2s linear;
+}
+
+@media (max-width: 639px) {
+  .motion-activo .corte-paso {
+    display: none;
+  }
+
+  .motion-activo .corte-paso[data-activa="si"] {
+    display: block;
+  }
+}
+
