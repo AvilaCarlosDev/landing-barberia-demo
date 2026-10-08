@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/AvilaCarlosDev/web-barberia-demo/actions/workflows/ci.yml/badge.svg)](https://github.com/AvilaCarlosDev/web-barberia-demo/actions/workflows/ci.yml) [![Licencia: MIT](https://img.shields.io/badge/licencia-MIT-green.svg)](LICENSE) [![Demo en vivo](https://img.shields.io/badge/demo%20en%20vivo-Vercel-000?logo=vercel)](https://agencia-web-barberia-demo.vercel.app)
 
-<a href="https://agencia-web-barberia-demo.vercel.app"><img src="docs/portada.jpg" alt="Noble Barber en la computadora y en el teléfono: portada con servicios, precios y reserva por WhatsApp" width="100%"></a>
+<a href="https://agencia-web-barberia-demo.vercel.app"><img src="docs/portada.jpg" alt="Noble Barber Society: portada con propuesta, reserva por WhatsApp y cifras del estudio" width="100%"></a>
 
 Sitio web de demostración, de una sola página: barbería premium con menú de servicios filtrable, barberos, membresías y reservas por WhatsApp.
 
