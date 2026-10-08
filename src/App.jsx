@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Contador, DivisorPole, MenuMovil, Rotulo, SaltarAlContenido, TiraPole, WhatsAppFlotante } from './sitio.jsx'
 import { SeccionCorte } from './corte.jsx'
+import { BotonComoLlegar, MapaUbicacion } from './mapa.jsx'
 import { activarMotion, useParallax, useRevelar, useRevelarHijos } from './motion.js'
 import { useSeccionActiva, wa } from './navegacion.js'
 
@@ -127,10 +128,18 @@ function App() {
   const revelarBarberos = useRevelarHijos()
   const revelarMembresias = useRevelarHijos()
   const revelarCitas = useRevelar()
-  const revelarUbicacion = useRevelar()
+  const revelarUbicacion = useRevelarHijos()
 
   useEffect(() => {
     activarMotion()
+    const destino = window.location.hash.slice(1)
+    if (!destino) return
+    const seccion = document.getElementById(destino)
+    if (typeof seccion?.scrollIntoView !== 'function') return
+    seccion.scrollIntoView({ block: 'start', behavior: 'instant' })
+    const reanudar = () => seccion.scrollIntoView({ block: 'start', behavior: 'instant' })
+    window.addEventListener('load', reanudar, { once: true, passive: true })
+    return () => window.removeEventListener('load', reanudar)
   }, [])
 
   const filteredServices = useMemo(() => {
@@ -517,7 +526,7 @@ function App() {
             />
 
             <div ref={revelarUbicacion} className="mt-14 grid overflow-hidden border border-[#d39b55]/35 bg-[#17140f] lg:grid-cols-2">
-              <div className="p-8 sm:p-12 lg:p-14">
+              <div data-revelar className="p-8 sm:p-12 lg:p-14">
                 <p className="text-lg leading-8 text-[#f4eadc]/80 sm:text-xl">
                   Av. Táchira con calle Comercio, Local 8. Punto Fijo, Falcón.
                 </p>
@@ -532,21 +541,19 @@ function App() {
                   ))}
                 </dl>
 
-                <a
-                  href={wa('Hola, quiero reservar una cita en Noble Barber.')}
-                  className="mt-10 inline-flex bg-[#d39b55] px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:-translate-y-0.5 hover:bg-[#f4eadc] hover:shadow-[0_16px_30px_-16px_rgba(211,155,85,.6)]"
-                >
-                  Reservar por WhatsApp
-                </a>
+                <div className="mt-10 flex flex-wrap gap-3">
+                  <a
+                    href={wa('Hola, quiero reservar una cita en Noble Barber.')}
+                    className="inline-flex items-center justify-center bg-[#d39b55] px-7 py-4 text-sm font-black uppercase tracking-[0.14em] text-[#15110d] transition hover:-translate-y-0.5 hover:bg-[#f4eadc] hover:shadow-[0_16px_30px_-16px_rgba(211,155,85,.6)]"
+                  >
+                    Reservar por WhatsApp
+                  </a>
+                  <BotonComoLlegar />
+                </div>
               </div>
 
-              <div className="relative min-h-[380px]">
-                <img
-                  src="/img/shop-interior.jpg"
-                  alt="Interior de la barbería Noble Barber con sillones y espejos"
-                  className="absolute inset-0 h-full w-full object-cover opacity-80"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#11100e]/85 via-transparent to-transparent lg:bg-gradient-to-r" />
+              <div data-revelar className="flex items-center border-t border-[#d39b55]/25 p-4 sm:p-6 lg:border-l lg:border-t-0 lg:p-9">
+                <MapaUbicacion />
               </div>
             </div>
           </div>
