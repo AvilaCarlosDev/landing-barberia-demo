@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { wa } from './navegacion.js'
+import { motionPermitido, useRevelar } from './motion.js'
 
 // Piezas de navegación compartidas: es un sitio web de una página, así que
 // el menú tiene que funcionar también en el teléfono y marcar dónde está uno.
@@ -124,21 +125,68 @@ export function OrnamentoTijera({ className = '' }) {
 }
 
 export function Rotulo({ antetitulo, titulo, texto, tono = 'oscuro' }) {
+  const revelar = useRevelar()
   const claro = tono === 'claro'
   return (
-    <div className="mx-auto max-w-3xl text-center">
-      <p className={`text-[11px] font-black uppercase tracking-[0.3em] ${claro ? 'text-[#7a4f1f]' : 'text-[#d39b55]'}`}>{antetitulo}</p>
-      <h2
-        className={`mt-4 font-serif text-4xl font-black uppercase leading-[0.95] tracking-[-0.015em] sm:text-5xl lg:text-6xl ${claro ? 'text-[#15110d]' : 'text-[#f4eadc]'}`}
-      >
-        {titulo}
-      </h2>
-      <div className={`mx-auto mt-6 flex max-w-[14rem] items-center gap-4 ${claro ? 'text-[#9d6932]' : 'text-[#d39b55]'}`}>
-        <span className="h-px flex-1 bg-current opacity-50" />
-        <OrnamentoTijera className="h-4 w-10 shrink-0" />
-        <span className="h-px flex-1 bg-current opacity-50" />
+    <div ref={revelar}>
+      <div data-mascara className="mx-auto max-w-3xl text-center">
+        <p className={`text-[11px] font-black uppercase tracking-[0.3em] ${claro ? 'text-[#7a4f1f]' : 'text-[#d39b55]'}`}>{antetitulo}</p>
+        <h2
+          className={`mt-4 font-serif text-4xl font-black uppercase leading-[0.95] tracking-[-0.015em] sm:text-5xl lg:text-6xl ${claro ? 'text-[#15110d]' : 'text-[#f4eadc]'}`}
+        >
+          {titulo}
+        </h2>
+        <div className={`mx-auto mt-6 flex max-w-[14rem] items-center gap-4 ${claro ? 'text-[#9d6932]' : 'text-[#d39b55]'}`}>
+          <span className="h-px flex-1 bg-current opacity-50" />
+          <OrnamentoTijera className="h-4 w-10 shrink-0" />
+          <span className="h-px flex-1 bg-current opacity-50" />
+        </div>
+        {texto && <p className={`mx-auto mt-6 max-w-2xl text-base leading-7 ${claro ? 'text-[#5f5042]' : 'text-[#f4eadc]/70'}`}>{texto}</p>}
       </div>
-      {texto && <p className={`mx-auto mt-6 max-w-2xl text-base leading-7 ${claro ? 'text-[#5f5042]' : 'text-[#f4eadc]/70'}`}>{texto}</p>}
     </div>
   )
+}
+
+const textoContador = (valor, decimales, sufijo) =>
+  `${decimales ? valor.toFixed(decimales) : Math.round(valor)}${sufijo}`
+
+export function Contador({ valor, decimales = 0, sufijo = '' }) {
+  const ref = useRef(null)
+
+  useEffect(() => {
+    const nodo = ref.current
+    if (!nodo || !motionPermitido()) return undefined
+
+    const escrito = (n) => textoContador(n, decimales, sufijo)
+    let cuadro = 0
+    const observador = new IntersectionObserver(
+      (entradas) => {
+        const entrada = entradas[0]
+        if (!entrada) return
+        if (!entrada.isIntersecting) {
+          nodo.textContent = escrito(0)
+          return
+        }
+        observador.disconnect()
+        const inicio = performance.now()
+        const duracion = 1300
+        const avanzar = (ahora) => {
+          const avance = Math.min(1, (ahora - inicio) / duracion)
+          const suave = 1 - Math.pow(1 - avance, 3)
+          nodo.textContent = escrito(valor * suave)
+          if (avance < 1) cuadro = requestAnimationFrame(avanzar)
+        }
+        cuadro = requestAnimationFrame(avanzar)
+      },
+      { threshold: 0.6 },
+    )
+
+    observador.observe(nodo)
+    return () => {
+      observador.disconnect()
+      if (cuadro) cancelAnimationFrame(cuadro)
+    }
+  }, [valor, decimales, sufijo])
+
+  return <span ref={ref}>{textoContador(valor, decimales, sufijo)}</span>
 }
